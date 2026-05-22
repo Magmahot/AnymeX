@@ -355,17 +355,27 @@ class SettingsSheet extends StatelessWidget {
             ),
           ),
           AnymexOnTap(
-            onTap: () => snackBar('This feature is not available yet.'),
-            child: Container(
-              padding: const EdgeInsets.all(8),
-              decoration: BoxDecoration(
-                color: theme.surfaceContainerHighest.opaque(0.5),
-                borderRadius: BorderRadius.circular(10),
-              ),
-              child: Icon(Iconsax.notification,
-                  size: 18, color: theme.onSurface.opaque(0.7)),
-            ),
-          ),
+  onTap: () {
+    if (!serviceHandler.isLoggedIn.value) {
+      snackBar('Please log in to view notifications');
+      return;
+    }
+    Get.back();
+    navigate(() => const NotificationScreen());
+  },
+  child: Container(
+    padding: const EdgeInsets.all(8),
+    decoration: BoxDecoration(
+      color: theme.surfaceContainerHighest.opaque(0.5),
+      borderRadius: BorderRadius.circular(10),
+    ),
+    child: Icon(
+      Iconsax.notification,
+      size: 18,
+      color: theme.onSurface.opaque(0.7),
+    ),
+  ),
+),
         ],
       ),
     );
