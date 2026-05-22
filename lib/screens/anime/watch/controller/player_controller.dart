@@ -136,6 +136,21 @@ class PlayerController extends GetxController with WidgetsBindingObserver {
       itemName: itemName,
       offlineVideoPath: videoPath,
     );
+    // Add these missing methods:
+  void navigator(bool show) {
+    // Toggle navigation bar visibility
+    // Implementation depends on your existing code
+  }
+
+  void toggleFullScreen() {
+    // Toggle fullscreen mode
+    // Implementation depends on your existing code
+  }
+
+  void seekTo(Duration position) {
+    // Seek to position
+    // Implementation depends on your existing code
+  }
   }
 
   BasePlayer get basePlayer => _basePlayer;
