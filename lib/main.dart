@@ -180,6 +180,7 @@ void _initializeGetxController() async {
     Get.put(SourceController());
   }
   Get.put(ServiceHandler());
+  Get.lazyPut<NotificationController>(() => NotificationController());
   Get.put(GreetingController());
   Get.put(CommentumService());
   Get.put(CommentPreloader());
