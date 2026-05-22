@@ -136,23 +136,55 @@ class PlayerController extends GetxController with WidgetsBindingObserver {
       itemName: itemName,
       offlineVideoPath: videoPath,
     );
-    // Add these missing methods:
-  void navigator(bool show) {
+  }
+ void navigator(bool show) {
     // Toggle navigation bar visibility
-    // Implementation depends on your existing code
+    showControls.value = show;
   }
 
   void toggleFullScreen() {
     // Toggle fullscreen mode
-    // Implementation depends on your existing code
+    toggleOrientation();
   }
 
   void seekTo(Duration position) {
     // Seek to position
-    // Implementation depends on your existing code
-  }
+    currentPosition.value = position;
+    _basePlayer.seek(position);
   }
 
+  // ... rest of your code ...
+}
+The Issue
+Currently your file has:
+dartfactory PlayerController.offline({...}) {
+  // code...
+  return PlayerController(...);
+  
+  // ❌ WRONG PLACE - Methods inside factory!
+  void navigator(bool show) { ... }
+  void toggleFullScreen() { ... }
+  void seekTo(Duration position) { ... }
+}
+Should be:
+dartfactory PlayerController.offline({...}) {
+  // code...
+  return PlayerController(...);
+}  // ← End factory
+
+// ✅ CORRECT PLACE - Methods as class methods
+void navigator(bool show) { ... }
+void toggleFullScreen() { ... }
+void seekTo(Duration position) { ... }
+
+How to Fix It
+
+Find line ~186 where the factory ends (after the closing brace)
+Move the three methods OUT of the factory constructor
+Place them after the factory but still inside the class
+Save and rebuild
+
+The methods are already there in your code, they're just in the wrong scope! 🎯
   BasePlayer get basePlayer => _basePlayer;
 
   late BasePlayer _basePlayer;
