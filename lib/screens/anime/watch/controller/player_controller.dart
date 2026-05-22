@@ -47,7 +47,11 @@ import 'package:sensors_plus/sensors_plus.dart';
 import 'package:volume_controller/volume_controller.dart';
 
 import '../../../../database/isar_models/track.dart' as model;
-
+void setRate(double rate) {
+  playbackSpeed.value = rate;
+  _basePlayer.setRate(rate);
+  settings.speed = rate;   // ← ADD THIS: persists to DB
+}
 extension PlayerControllerExtensions on PlayerController {
   bool get hasNextEpisode {
     final index =
