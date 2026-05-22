@@ -726,8 +726,12 @@ class PlayerController extends GetxController with WidgetsBindingObserver {
     }
 
     _performInitialTracking();
-    applySavedProfile();
-  }
+applySavedProfile();
+
+// ← ADD THIS: restore persisted playback speed
+if (settings.speed != 1.0) {
+  await _basePlayer.setRate(settings.speed);
+}
 
   String _resolveDecoderHwdec() {
     switch (settings.hardwareDecoder) {
