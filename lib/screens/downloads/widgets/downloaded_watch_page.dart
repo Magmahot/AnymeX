@@ -68,9 +68,10 @@ class _DownloadedWatchPageState extends State<DownloadedWatchPage> {
     ));
   }
 
-  Future<void> _saveProgress() async {
-    final pos = _controller.currentPosition.value.inMilliseconds;
-    final dur = _controller.episodeDuration.value.inMilliseconds;
+Future<void> _saveProgress() async {
+  if (!Get.isRegistered<PlayerController>()) return;
+  final pos = _controller.currentPosition.value?.inMilliseconds ?? 0;
+  final dur = _controller.episodeDuration.value?.inMilliseconds ?? 0;
     if (dur <= 0) return;
 
     await downloadController.updateEpisodeProgress(
