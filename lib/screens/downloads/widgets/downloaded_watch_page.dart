@@ -101,7 +101,7 @@ Future<void> _saveProgress() async {
     return Scaffold(
       body: Stack(
         children: [
-          Obx(() => _controller.videoWidget),
+          Obx(() => Get.isRegistered<PlayerController>() ? _controller.videoWidget : const SizedBox()),
           PlayerOverlay(controller: _controller),
           if (!PlayerKeys.useLibass.get<bool>(false))
             SubtitleText(controller: _controller),
