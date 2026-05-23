@@ -144,15 +144,6 @@ dartfactory PlayerController.offline({...}) {
   // code...
   return PlayerController(...);
   
-
-How to Fix It
-
-Find line ~186 where the factory ends (after the closing brace)
-Move the three methods OUT of the factory constructor
-Place them after the factory but still inside the class
-Save and rebuild
-
-The methods are already there in your code, they're just in the wrong scope! 🎯
   BasePlayer get basePlayer => _basePlayer;
 
   late BasePlayer _basePlayer;
