@@ -137,24 +137,6 @@ class PlayerController extends GetxController with WidgetsBindingObserver {
       offlineVideoPath: videoPath,
     );
   }
-}
-The Issue
-Currently your file has:
-dartfactory PlayerController.offline({...}) {
-  // code...
-  return PlayerController(...);
-  
-  BasePlayer get basePlayer => _basePlayer;
-
-  late BasePlayer _basePlayer;
-
-  Widget get videoWidget => _basePlayer.getVideoWidget(fit: videoFit.value);
-
-  Episode? get savedEpisode => offlineStorage.getWatchedEpisode(
-      anilistData.id, currentEpisode.value.number.toString());
-
-  final offlineStorage = Get.find<OfflineStorageController>();
-
   PlayerSettings get playerSettings => settings.playerSettings.value;
 
   final Rx<Duration> currentPosition = Rx<Duration>(Duration.zero);
