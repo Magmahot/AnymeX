@@ -137,23 +137,6 @@ class PlayerController extends GetxController with WidgetsBindingObserver {
       offlineVideoPath: videoPath,
     );
   }
- void navigator(bool show) {
-    // Toggle navigation bar visibility
-    showControls.value = show;
-  }
-
-  void toggleFullScreen() {
-    // Toggle fullscreen mode
-    toggleOrientation();
-  }
-
-  void seekTo(Duration position) {
-    // Seek to position
-    currentPosition.value = position;
-    _basePlayer.seek(position);
-  }
-
-  // ... rest of your code ...
 }
 The Issue
 Currently your file has:
@@ -161,21 +144,6 @@ dartfactory PlayerController.offline({...}) {
   // code...
   return PlayerController(...);
   
-  // ❌ WRONG PLACE - Methods inside factory!
-  void navigator(bool show) { ... }
-  void toggleFullScreen() { ... }
-  void seekTo(Duration position) { ... }
-}
-Should be:
-dartfactory PlayerController.offline({...}) {
-  // code...
-  return PlayerController(...);
-}  // ← End factory
-
-// ✅ CORRECT PLACE - Methods as class methods
-void navigator(bool show) { ... }
-void toggleFullScreen() { ... }
-void seekTo(Duration position) { ... }
 
 How to Fix It
 
