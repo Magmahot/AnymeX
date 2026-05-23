@@ -137,6 +137,10 @@ class PlayerController extends GetxController with WidgetsBindingObserver {
       offlineVideoPath: videoPath,
     );
   }
+    BasePlayer get basePlayer => _basePlayer;
+  late BasePlayer _basePlayer;
+
+  Widget get videoWidget => _basePlayer.getVideoWidget(fit: videoFit.value);
   PlayerSettings get playerSettings => settings.playerSettings.value;
 
   final Rx<Duration> currentPosition = Rx<Duration>(Duration.zero);
