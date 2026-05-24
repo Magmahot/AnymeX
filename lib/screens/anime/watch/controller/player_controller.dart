@@ -2,25 +2,25 @@
 
 // Below: ADDED STUB METHODS TO PREVENT BUILD ERRORS
 
-// Video and subtitle tracks
-default void setSubtitleTrack(track) {/* TODO: Implement logic */}
-default void setAudioTrack(track) {/* TODO: Implement logic */}
-default void setServerTrack(server) {/* TODO: Implement logic */}
+  // Video and subtitle tracks
+  void setSubtitleTrack(dynamic track) {/* TODO: Implement logic */}
+  void setAudioTrack(dynamic track) {/* TODO: Implement logic */}
+  void setServerTrack(dynamic server) {/* TODO: Implement logic */}
 
-// Subtitle options (external and current stream)
-default List getAllStreamSubtitleOptions() => [];
-default List getCurrentStreamSubtitleOptions() => [];
+  // Subtitle options (external and current stream)
+  List getAllStreamSubtitleOptions() => [];
+  List getCurrentStreamSubtitleOptions() => [];
 
-default void setExternalSub(track) {/* TODO: Implement logic */}
-default void setSubtitleDelay(Duration d) {/* TODO: Implement logic */}
+  void setExternalSub(dynamic track) {/* TODO: Implement logic */}
+  void setSubtitleDelay(Duration d) {/* TODO: Implement logic */}
 
-default void openColorProfileBottomSheet(context) {/* TODO: Implement logic */}
-default void resetVideoFit() {/* TODO: Implement logic */}
-default void toggleVideoFit() {/* TODO: Implement logic */}
+  void openColorProfileBottomSheet(dynamic context) {/* TODO: Implement logic */}
+  void resetVideoFit() {/* TODO: Implement logic */}
+  void toggleVideoFit() {/* TODO: Implement logic */}
 
-default void navigator(bool next) {/* TODO: Implement navigation logic (prev/next episode) */}
-default void togglePlayPause() {/* TODO: Implement play/pause logic */}
-default void seekTo(Duration pos) {/* TODO: Implement seeking logic */}
-default void toggleFullScreen() {/* TODO: Implement fullscreen switch logic */}
+  void navigator(bool next) {/* TODO: Implement navigation logic (prev/next episode) */}
+  void togglePlayPause() {/* TODO: Implement play/pause logic */}
+  void seekTo(Duration pos) {/* TODO: Implement seeking logic */}
+  void toggleFullScreen() {/* TODO: Implement fullscreen switch logic */}
 
 // ... (existing or generated PlayerController code after)
