@@ -1222,7 +1222,47 @@ if (settings.speed != 1.0) {
         videoPath,
         startPosition: Duration(milliseconds: stamp ?? 0),
       );
-      // Update the selected video and offline path tracking
+      /// Navigate to next or previous episode
+  void navigator(bool forward) {
+    final Episode? target = forward ? nextEpisode : previousEpisode;
+    if (target == null) return;
+    currentEpisode.value = target;
+    // Update selected video if possible
+    final int idx = episodeList.indexWhere((e) => e.number == target.number);
+    if (idx != -1 && idx < episodeTracks.length) {
+      selectedVideo.value = episodeTracks[idx];
+    }
+    // Attempt to seek to start of new episode
+    seekTo(Duration.zero);
+  }
+
+  /// Toggle fullscreen mode (orientation change)
+  void toggleFullScreen() {
+    toggleOrientation();
+  }
+
+  /// Seek to a specific position in the current video
+  void seekTo(Duration position) {
+    // Ensure position is within video duration bounds
+    final Duration safePos = position > episodeDuration.value ? episodeDuration.value : position;
+    _basePlayer.seek(safePos);
+    currentPosition.value = safePos;
+  }
+
+  /// Open the color profile selection bottom sheet
+  void openColorProfileBottomSheet() {
+    final context = Get.context;
+    if (context == null) return;
+    showModalBottomSheet(
+      context: context,
+      builder: (_) => const BottomSheetMenu(
+        title: 'Color Profile',
+        child: Text('Select a color profile'),
+      ),
+    );
+  }
+
+  // Add any additional helper methods hereo and offline path tracking
       selectedVideo.value = model.Video(
         url: videoPath,
         quality: 'Offline',
