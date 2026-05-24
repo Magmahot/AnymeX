@@ -93,12 +93,7 @@ jobs:
           if [ -n "$KEYSTORE_BASE64" ]; then
             mkdir -p android/app
             echo "$KEYSTORE_BASE64" | base64 -d > android/app/anymex.jks
-            cat > android/key.properties << EOF
-storePassword=$KEYSTORE_PASSWORD
-keyPassword=$KEYSTORE_PASSWORD
-keyAlias=$KEY_ALIAS
-storeFile=anymex.jks
-EOF
+            printf "storePassword=%s\nkeyPassword=%s\nkeyAlias=%s\nstoreFile=anymex.jks\n" "$KEYSTORE_PASSWORD" "$KEYSTORE_PASSWORD" "$KEY_ALIAS" > android/key.properties
           else
             echo "⚠️ No signing secrets provided — building unsigned APK"
           fi
